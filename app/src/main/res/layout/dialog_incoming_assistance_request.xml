@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/customerLocationMap"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/dummy_floor_plan"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        android:text="Customer Assistance Request"/>
+
+    <TextView
+        android:id="@+id/assistanceMessageText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        tools:text="Please could you help me reach the Tissue from the top shelf?"/>
+
+</LinearLayout>

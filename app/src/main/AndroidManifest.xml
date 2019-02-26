@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ses.zebra.personalshopperassistant">
+
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- WFC Permissions -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.START_BACKGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <!-- MQTT Service -->
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
+
+        <!-- WFC Service -->
+        <service android:name="com.slacorp.eptt.android.service.CoreService" />
+
+        <!-- WFC PTT Receiver -->
+        <receiver
+            android:name="com.slacorp.eptt.android.service.BootReceiver"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".Activities.HomeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:parentActivityName=".Activities.HomeActivity"
+            tools:ignore="InnerclassSeparator">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.HomeActivity"/>
+        </activity>
+        <activity
+            android:name=".Activities.MessageActivity"
+            android:lockTaskMode="if_whitelisted"
+            android:windowSoftInputMode="adjustPan"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".Activities.PushToTalkActivity"
+            tools:ignore="InnerclassSeparator" />
+
+        <!-- ============================================================ -->
+        <!-- WFC CONNECT META DATA -->
+        <!-- ============================================================ -->
+
+
+        <!-- useVoicePrivacy should always be true -->
+        <meta-data
+            android:name="useVoicePrivacy"
+            android:value="true" />
+
+        <!-- This is used by the service to get resources from the application. see com.slacorp.eptt.android.service.ServiceResources -->
+        <meta-data
+            android:name="serviceResources"
+            android:value="com.ses.zebra.personalshopperassistant.Services.ServiceResourcesReal" />
+
+        <!-- This is used by the service post various notifications. see com.slacorp.eptt.android.service.ServiceNotification -->
+        <meta-data
+            android:name="serviceNotification"
+            android:value="com.ses.zebra.personalshopperassistant.Services.ServiceNotificationReal" />
+
+        <!-- This is used by the service post various intents from notifications. see com.slacorp.eptt.android.service.ServiceIntents -->
+        <meta-data
+            android:name="serviceIntent"
+            android:value="com.ses.zebra.personalshopperassistant.Services.ServiceIntentReal" />
+
+        <!-- Set this to your main/call activity. It will be used by the service to launch that activity when a call starts, if needed -->
+        <meta-data
+            android:name="uiCallClass"
+            android:value="com.ses.zebra.personalshopperassistant.Activities.PushToTalkActivity" />
+
+        <activity android:name=".Activities.CallListenerActivity" />
+        <activity android:name=".Activities.MessageListenerActivity"></activity>
+    </application>
+
+</manifest>

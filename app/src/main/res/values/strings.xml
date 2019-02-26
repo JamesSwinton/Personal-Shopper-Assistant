@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">PSSDemo Assistant</string>
+
+    <!-- Push to Talk Button -->
+    <string name="push_to_talk">Push to Talk</string>
+    <string name="no_contact_selected">Select a Contact</string>
+    <string name="floor_taken">Floor Taken</string>
+    <string name="wait_for_floor">Wait for Floor</string>
+    <string name="talking">Release to Stop Talking</string>
+
+    <!-- ContactListAdapter -->
+    <string name="contactName">%1$s %2$s</string>
+
+
+    <string name="default_wfc_activation_code">AAAAAAAAA</string>
+
+</resources>
